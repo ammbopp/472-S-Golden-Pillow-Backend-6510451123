@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
 
 const DeliveredOrder = sequelize.define(
-  "DeliveredOrder",
+  "deliveredorders",
   {
     deliver_id: {
       type: DataTypes.INTEGER,
@@ -31,7 +31,7 @@ const DeliveredOrder = sequelize.define(
     },
   },
   {
-    tableName: "DeliveredOrders",
+    tableName: "deliveredorders",
     timestamps: false, // Disable timestamps if not needed
   }
 );
