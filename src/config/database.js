@@ -1,21 +1,11 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,        // ชื่อฐานข้อมูลจาก .env
-  process.env.DB_USER,        // ชื่อผู้ใช้จาก .env
-  process.env.DB_PASSWORD,    // รหัสผ่านจาก .env
-  {
-    host: process.env.DB_HOST,   // ชื่อ container mysql (จาก .env)
-    port: process.env.DB_PORT || 3306,  // พอร์ตที่ใช้ (จาก .env)
-    dialect: process.env.DB_CONNECTION || 'mysql',  // ใช้ MySQL เป็นค่าเริ่มต้น
-    logging: process.env.DB_DEBUG === 'true' ? console.log : false,  // เปิด debug logs ถ้า DB_DEBUG เป็น true
-    dialectOptions: {
-      useUTC: false,  // ใช้เวลาของภูมิภาค
-    },
-    timezone: '+07:00',  // เวลาของประเทศไทย
-  }
-);
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT || 3306,
+  dialect: 'mysql',
+});
 
 sequelize.authenticate()
   .then(() => {
